@@ -1,9 +1,9 @@
-# 🔐 Password Strength Checker (CLI Tool)
+#  Password Strength Checker (CLI Tool)
 
 ## 🎯 Objective:
 A Python command-line tool to check password strength and give suggestions to improve weak passwords.
 
-## ✅ Features:
+## Features:
 - Checks for:
   - Length (8+ characters)
   - Uppercase and lowercase letters
@@ -13,6 +13,6 @@ A Python command-line tool to check password strength and give suggestions to im
 - Suggests improvements
 - Optional: Generate a strong random password with `gen` command
 
-## 🚀 How to Use:
+##  How to Use:
 ```bash
 python3 checker.py

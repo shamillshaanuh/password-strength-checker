@@ -1,0 +1,55 @@
+check_password_strength(password):
+def generate_strong_password(length=12):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+ 
+   suggestions = []
+
+    length_check = len(password) >= 8
+    uppercase_check = re.search(r'[A-Z]', password) is not None
+    lowercase_check = re.search(r'[a-z]', password) is not None
+    digit_check = re.search(r'[0-9]', password) is not None
+    special_check = re.search(r'[!@#$%^&*(),.?":{}|<>]', password) is not None
+
+    score = sum([length_check, uppercase_check, lowercase_check, digit_check, special_check])
+
+    if score <= 2:
+        strength = "Weak"
+    elif score == 3 or score == 4:
+        strength = "Moderate"
+    else:
+        strength = "Strong"
+
+    if not length_check:
+        suggestions.append("Use at least 8 characters.")
+    if not uppercase_check:
+        suggestions.append("Add an uppercase letter.")
+    if not lowercase_check:
+        suggestions.append("Add a lowercase letter.")
+    if not digit_check:
+        suggestions.append("Add a number.")
+    if not special_check:
+        suggestions.append("Add a special character.")
+
+    return strength, score, suggestions
+
+# CLI input
+choice = input("Do you want to (1) check a password or (2) generate a strong password? ")
+
+if choice == "1":
+    password = input("Enter your password: ")
+    strength, score, suggestions = check_password_strength(password)
+    print(f"\nPassword Strength: {strength} (Score: {score}/5)")
+    if suggestions:
+        print("Suggestions:")
+        for s in suggestions:
+            print("- " + s)
+    else:
+        print("Great! Your password is strong.")
+elif choice == "2":
+    strong_password = generate_strong_password()
+    print(f"Generated Strong Password: {strong_password}")
+else:
+    print("Invalid choice.")
+
